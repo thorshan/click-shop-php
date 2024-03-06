@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
-
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -13,6 +13,9 @@ class UserController extends Controller
     public function index()
     {
         //
+        return view("users.index", [
+            "users" => User::all(),
+        ]);
     }
 
     /**
@@ -42,24 +45,42 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(User $user)
     {
         //
+        return view("users.edit", [
+            "user" => User::find($user->id),
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, User $user)
     {
         //
+        $formData = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email'
+        ]);
+
+        $user->name = $formData['name'];
+        $user->email = $formData['email'];
+
+        $user->save();
+
+        return redirect()->route('users.index')->with('success', "User updated successfully.");
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $user)
     {
         //
+        $user = User::find($user->id);
+        $user->delete();
+
+        return redirect()->route('users.index')->with('success', "User deleted successfully.");
     }
 }

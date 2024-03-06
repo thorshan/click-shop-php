@@ -3,15 +3,6 @@
         <a class="navbar-brand" href="{{ url()->current() }}">
             <img src="{{ asset('logo/click-logo.png') }}" width="120" alt="">
         </a>
-        <div class="navbar-nav mx-auto">
-            <a class="nav-link" href="{{ route('home') }}">Home</a>
-            <a class="nav-link" href="{{ route('stores') }}">Shops</a>
-            <a class="nav-link" href="#">Items</a>
-            <a class="nav-link" href="#">Features</a>
-            @if (!auth()->check())
-                <a class="nav-link" href="{{ route('sell.products') }}">Sell products</a>
-            @endif
-        </div>
 
         <div class="">
             @auth
@@ -35,13 +26,6 @@
                         </li>
                     </ul>
                 </div>
-            @else
-                <a class="text-secondary text-decoration-none" href="{{ route('login') }}">Login</a>
-                <span class="text-danger mx-2">|</span>
-                <a class="text-secondary text-decoration-none" href="{{ route('register') }}">Sign Up</a>
-                <a class="text-danger ms-3" href="#">
-                    <i class="fa-solid fa-cart-shopping fs-4"></i>
-                </a>
             @endauth
         </div>
     </div>

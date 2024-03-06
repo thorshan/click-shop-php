@@ -9,6 +9,11 @@ use App\Http\Controllers\Controller;
 
 class AuthController extends Controller
 {
+    // Route to dashboard
+    public function dashboard(){
+        return view('admin.dashboard');
+    }
+
     // Route to register
     public function getRegister()
     {

@@ -1,7 +1,7 @@
 @extends('layout.app')
 
 @section('content')
-    <div class="container-fluid">
+        @include('partials._adminNav')
         <div class="row" style="height:100vh;">
             <div class="g-0" style="width:20%;">
                 @include('partials._sideNav')
@@ -10,5 +10,4 @@
                 {{ $slot }}
             </div>
         </div>
-    </div>
 @endsection
